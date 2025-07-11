@@ -24,7 +24,7 @@ public:
     void addPoints(const std::vector<Vector3> &pt);
     // void addVertexArray()
 
-    void addBoxPrimitives(SgGroupPtr sgg, SgMaterial *mat = nullptr);
+    void addBoxPrimitives(SgGroupPtr sgg, int depth = 0, SgMaterial *mat = nullptr);
 
     Vector3& offset() { return offset_; }
     const Vector3& offset() const { return offset_; }

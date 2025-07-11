@@ -106,13 +106,19 @@ PYBIND11_MODULE(CGALMesh, m)
     py::class_< SgOctomap, SgOctomapPtr > (m, "SgOctomap")
     .def(py::init<double>())
     .def("addPointSet", &SgOctomap::addPointSet)
-    .def("prune", &SgOctomap::prune)
-    .def("expand", &SgOctomap::expand)
+    .def("addPoints", &SgOctomap::addPoints)
+    .def("addMatrix", [] (SgOctomap &self, const py::array &npa) {
+        // TODO
+    })
     .def("addBoxPrimitives", &SgOctomap::addBoxPrimitives)
     .def_property("offset", [] (SgOctomap &self) { return self.offset(); },
                   [] (SgOctomap &self, const Vector3 &v) { self.offset() = v; })
     .def_property("scale", [] (SgOctomap &self) { return self.scale(); },
                   [] (SgOctomap &self, const Vector3 &v) { self.scale() = v; })
+    // TODO loading PCD
+    // inherited methods
+    .def("prune", &SgOctomap::prune)
+    .def("expand", &SgOctomap::expand)
     ;
 
     py::class_< MergeBoxes > (m, "MergeBoxes")
