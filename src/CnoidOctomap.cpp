@@ -37,14 +37,14 @@ void SgOctomap::addPoints(const std::vector<Vector3> &pt)
     this->insertPointCloud (octo_pc, origin);
 }
 
-void SgOctomap::addBoxPrimitives(SgGroupPtr sgg, SgMaterial *mat)
+void SgOctomap::addBoxPrimitives(SgGroupPtr sgg, int depth, SgMaterial *mat)
 {
     double scl_x = this->scale_.x();
     double scl_y = this->scale_.y();
     double scl_z = this->scale_.z();
     Vector3 _offset(this->offset_.x(), this->offset_.y(), this->offset_.z());
 
-    for(auto it = this->begin_leafs(); it != this->end_leafs(); it++) {
+    for(auto it = this->begin_leafs(depth); it != this->end_leafs(); it++) {
         double sz = it.getSize();
         {
             OcTree::NodeType &nd = *it;
